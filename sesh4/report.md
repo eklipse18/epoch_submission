@@ -34,3 +34,11 @@ Linear(128, 8)
 - Training Loss: 0.0937
 - Validation Loss: ~1.5
 - Test Accuracy: 55%
+
+### RNN Classifier
+- Training Loss: 1.9
+- Validation Loss: ~2.0
+- Test Accuracy: 22%
+
+
+# Late fusion of CNN and RNN
