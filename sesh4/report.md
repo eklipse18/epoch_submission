@@ -41,4 +41,4 @@ Linear(128, 8)
 - Test Accuracy: 22%
 
 
-# Late fusion of CNN and RNN
+Plots are included in the ipython notebook for both training and validation losses, as well as test accuracies for each epoch.
