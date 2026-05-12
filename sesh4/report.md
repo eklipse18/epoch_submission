@@ -34,8 +34,3 @@ Linear(128, 8)
 - Training Loss: 0.0937
 - Validation Loss: ~1.5
 - Test Accuracy: 55%
-
-### RNN Classifier
-- Training Loss: 0.1205
-- Validation Loss: ~1.8
-- Test Accuracy: 12%
