@@ -28,7 +28,6 @@ LSTM(input_size=768, hidden_size=128, num_layers=2, batch_first=True)
 Linear(128, 8)
 ```
 
-![wefwef](fwefwef)
 ## 2. Results
 ### CNN Classifier
 - Training Loss: 0.0937
