@@ -37,6 +37,16 @@ LSTM(input_size=768, hidden_size=128, num_layers=2, batch_first=True)
 Linear(128, 8)
 ```
 
+### Late fusion of CNN and RNN
+To combine the strengths of both the CNN and RNN classifiers, we implemented a late fusion strategy. In this approach, we take the output probabilities from both models and apply a weighted average to produce the final prediction. The weights were determined based on the validation performance of each model, giving more weight to the CNN due to its higher accuracy. This fusion allows us to leverage the complementary information captured by both models, resulting in improved overall performance on the test set.
+```python
+# Example of late fusion
+cnn_probs = cnn_model.predict(X_cnn)  # Output probabilities from CNN
+rnn_probs = rnn_model.predict(X_rnn)  # Output probabilities from RNN
+combined_probs = 0.8 * cnn_probs + 0.2 * rnn_probs  # 80/20 weightage for late fusion
+final_predictions = np.argmax(combined_probs, axis=1)  # Final class predictions
+```
+
 ## 2. Results
 ### CNN Classifier
 - Training Loss: 0.0937
@@ -48,10 +58,11 @@ Linear(128, 8)
 - Validation Loss: ~2.0
 - Test Accuracy: 22%
 
+### Late Fusion
+- Test Accuracy: 66%
+Surprisingly higher than both the CNN and RNN, since the RNN is supposed to basically be a shot in the dark, but it seems to be providing some complementary information that the CNN is missing, which is why the late fusion is performing better than either model alone.
 
-Plots are included in the ipython notebook for both training and validation losses, as well as test accuracies for each epoch.
-
-
+Plots are included in the ipython notebook for both training and validation losses, as well as test accuracies for each model.
 
 # Mel Spectrograms and Waveforms
 - A **waveform** is the raw audio signal plotted as amplitude over time. It shows how the sound pressure changes sample by sample and preserves the original time-domain structure of the audio.
@@ -60,4 +71,3 @@ Plots are included in the ipython notebook for both training and validation loss
 - In this project, the CNN uses mel spectrograms because they convert audio into an image-like input that convolutional layers can process effectively.
 - Compared with waveforms, mel spectrograms make recurring acoustic patterns easier to see and learn.
 - These spectrograms are made using the **STFT** (Short-Time Fourier Transform), which is applying the **FFT** (Fast Fourier Transform) to short overlapping windows of the audio signal, allowing us to capture how frequency content changes over time.
-
