@@ -59,7 +59,7 @@ final_predictions = np.argmax(combined_probs, axis=1)  # Final class predictions
 - Test Accuracy: 22%
 
 ### Late Fusion
-- Test Accuracy: 66%
+- Test Accuracy: 64%
 Surprisingly higher than both the CNN and RNN, since the RNN is supposed to basically be a shot in the dark, but it seems to be providing some complementary information that the CNN is missing, which is why the late fusion is performing better than either model alone.
 
 Plots are included in the ipython notebook for both training and validation losses, as well as test accuracies for each model.
